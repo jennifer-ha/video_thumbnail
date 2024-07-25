@@ -45,7 +45,7 @@ class VideoThumbnail {
       'timeMs': timeMs,
       'quality': quality
     };
-    return await _channel.invokeMethod('file', reqMap);
+    return await _channel.invokeMethod<String>('file', reqMap);
   }
 
   /// Generates a thumbnail image data in memory as UInt8List, it can be easily used by Image.memory(...).
@@ -71,6 +71,6 @@ class VideoThumbnail {
       'timeMs': timeMs,
       'quality': quality,
     };
-    return await _channel.invokeMethod('data', reqMap);
+    return await _channel.invokeMethod<Uint8List>('data', reqMap);
   }
 }
