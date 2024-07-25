@@ -260,8 +260,8 @@ public class VideoThumbnailPlugin implements FlutterPlugin, MethodCallHandler {
     }
 
     private static void setDataSource(String video, final MediaMetadataRetriever retriever) throws IOException {
-        File videoFile = new File(video);
-        FileInputStream inputStream = new FileInputStream(videoFile.getAbsolutePath());
-        retriever.setDataSource(inputStream.getFD());
+        try (FileInputStream inputStream = new FileInputStream(new File(video))) {
+            retriever.setDataSource(inputStream.getFD());
+        }
     }
 }
